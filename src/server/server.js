@@ -12,7 +12,6 @@ app.set('view engine', 'pug');
 app.get('/api/:location', (req, res) => {
   yelpAPI.search({ term: 'bar', location: req.params.location })
   .then((data) => {
-    //console.log(data);
     res.send(data);
   })
   .catch((err) => {

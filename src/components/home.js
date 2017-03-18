@@ -7,10 +7,13 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import SearchButton from './SearchButton';
+import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
+import { setPOIS } from '../actions/poisActions';
 
 @connect(store => ({
   searchTerm: store.user.searchTerm,
+  pois: store.POIs,
 }))
 class Home extends React.Component {
   handleKeyPress = (e) => {
@@ -25,16 +28,19 @@ class Home extends React.Component {
     console.log('Click');
     axios.get(`/api/${this.props.searchTerm}`).then((res) => {
       console.log('RESPONSE:', res);
+      this.props.dispatch(setPOIS(res.data.businesses));
     }).catch((err) => {
       console.log(err);
     });
   }
   render() {
+    const poiList = this.props.pois.map((p) => (<POI name={p.name} />));
     return (
       <div>
         <h1>naito</h1>
         <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
         <SearchButton handleClick={this.handleClick} searchTerm={this.props.searchTerm} />
+        {poiList}
       </div>
     );
   }
