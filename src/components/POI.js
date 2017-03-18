@@ -7,7 +7,17 @@ import React from 'react';
 class POI extends React.Component {
   render() {
     return (
-      <h4>{this.props.name}</h4>
+      <div className="POI">
+        <a href={this.props.url}>
+          <h3 className="poiTitle">{this.props.name}</h3>
+        </a>
+        <button className="poiGoingButton">{this.props.going}</button>
+        <div className="clearfix" />
+        <hr />
+        <img className="poiImg" src={this.props.imageUrl} alt={this.props.name} />
+        <p className="poiSnippet">&quot;{this.props.snippetText}&quot;</p>
+        <div className="clearfix" />
+      </div>
     );
   }
 }
