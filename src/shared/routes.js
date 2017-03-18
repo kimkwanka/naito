@@ -1,10 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
-import Layout from '../components/layout';
-import Home from '../components/home';
-import Dashboard from '../components/dashboard';
-import StyleGuide from '../components/styleguide';
+import Layout from '../components/Layout';
+import Home from '../components/Home';
+import Dashboard from '../components/Dashboard';
+import StyleGuide from '../components/Styleguide';
 
 // export getRoutes function instead of simple JSX to access redux store in checkAuth
 const getRoutes = store => (
