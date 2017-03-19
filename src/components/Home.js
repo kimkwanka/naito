@@ -20,7 +20,7 @@ class Home extends React.Component {
   componentDidMount() {
     // When we get to this page, try to search the API.
     // (since this.props.searchTerm will be != '' in cases where the user just logged in
-    // and got back from the uthentication page)
+    // and got back from the authentication page)
     this.searchAPI();
   }
   handleKeyPress = (e) => {
