@@ -1,5 +1,5 @@
 const user = (state = {
-  name: 'InsertNameHere',
+  name: '',
   searchTerm: '',
   loggedIn: false,
 }, action) => {

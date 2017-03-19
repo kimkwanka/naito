@@ -17,15 +17,21 @@ import { setPOIS } from '../actions/poisActions';
   pois: store.POIs,
 }))
 class Home extends React.Component {
+  componentDidMount() {
+    // When we get to this page, try to search the API.
+    // (since this.props.searchTerm will be != '' in cases where the user just logged in
+    // and got back from the uthentication page)
+    this.searchAPI();
+  }
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.handleClick();
+      this.searchAPI();
     }
   }
   handleChange = (e) => {
     this.props.dispatch(setSearchTerm(e.target.value));
   }
-  handleClick = () => {
+  searchAPI = () => {
     if (this.props.searchTerm !== '') {
       axios.get(`/api/${this.props.searchTerm}`).then((res) => {
         console.log('RESPONSE:', res);
@@ -40,7 +46,7 @@ class Home extends React.Component {
     return (
       <div>
         <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
-        <SearchButton handleClick={this.handleClick} searchTerm={this.props.searchTerm} />
+        <SearchButton handleClick={this.searchAPI} searchTerm={this.props.searchTerm} />
         {poiList}
       </div>
     );

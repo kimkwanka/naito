@@ -12,8 +12,10 @@ const css = (process.env.NODE_ENV !== 'production') ? '' : 'link rel="stylesheet
 const webRoot = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8081' : '';
 
 export default (req, res, next) => {
-  const ip = req.headers['x-forwarded-for'] || req.ip;
-  const store = hydrateStore({ user: { name: 'Harald', ip } });
+  // req.user is != undefined when successfully logged in with Github (githubAuth.js)
+  const user = req.user ? { name: req.user.username, searchTerm: 'Berlin', loggedIn: true } : { name: '', searchTerm: '', loggedIn: false };
+
+  const store = hydrateStore({ user });
 
   match({ routes: getRoutes(store), location: req.url }, (matchErr, redirect, props) => {
     if (matchErr) {
