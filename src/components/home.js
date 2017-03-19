@@ -36,8 +36,7 @@ class Home extends React.Component {
   render() {
     const poiList = this.props.pois.map(p => (<POI name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />));
     return (
-      <div>
-        <h1>naito</h1>
+      <div>   
         <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
         <SearchButton handleClick={this.handleClick} searchTerm={this.props.searchTerm} />
         {poiList}

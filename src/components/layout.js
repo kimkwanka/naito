@@ -3,11 +3,13 @@
 
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
+import Header from './Header';
 
 class Layout extends React.Component {
   render() {
     return (
       <div>
+        <Header />
         <main className="container">
           <IndexLink to="/" activeClassName="active"><li className="navItem">Home</li></IndexLink>
           <Link to="/dashboard" activeClassName="active"><li className="navItem">Dashboard</li></Link>
