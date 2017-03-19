@@ -12,6 +12,7 @@ server.listen(PORT, () => {
   console.log(`Express server running at ${PORT} in ${process.env.NODE_ENV || 'dev'} mode`);
 });
 
+// Handle hot module replacement
 if ((process.env.NODE_ENV !== 'production') && module.hot) {
   module.hot.accept('./server', () => {
     server.removeListener('request', currentApp);

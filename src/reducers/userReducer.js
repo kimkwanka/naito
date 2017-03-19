@@ -1,6 +1,7 @@
 const user = (state = {
   name: 'InsertNameHere',
   searchTerm: '',
+  loggedIn: false,
 }, action) => {
   switch (action.type) {
     case 'SET_SEARCH_TERM':

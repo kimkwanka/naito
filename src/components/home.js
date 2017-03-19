@@ -13,6 +13,7 @@ import { setPOIS } from '../actions/poisActions';
 
 @connect(store => ({
   searchTerm: store.user.searchTerm,
+  loggedIn: store.user.loggedIn,
   pois: store.POIs,
 }))
 class Home extends React.Component {
@@ -25,18 +26,19 @@ class Home extends React.Component {
     this.props.dispatch(setSearchTerm(e.target.value));
   }
   handleClick = () => {
-    console.log('Click');
-    axios.get(`/api/${this.props.searchTerm}`).then((res) => {
-      console.log('RESPONSE:', res);
-      this.props.dispatch(setPOIS(res.data.businesses));
-    }).catch((err) => {
-      console.log(err);
-    });
+    if (this.props.searchTerm !== '') {
+      axios.get(`/api/${this.props.searchTerm}`).then((res) => {
+        console.log('RESPONSE:', res);
+        this.props.dispatch(setPOIS(res.data.businesses));
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
   }
   render() {
-    const poiList = this.props.pois.map(p => (<POI name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />));
+    const poiList = this.props.pois.map(p => (<POI loggedIn={this.props.loggedIn} name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />));
     return (
-      <div>   
+      <div>
         <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
         <SearchButton handleClick={this.handleClick} searchTerm={this.props.searchTerm} />
         {poiList}

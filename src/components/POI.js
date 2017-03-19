@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-array-index-key */
 import React from 'react';
+import GoingButton from './GoingButton';
 
 class POI extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class POI extends React.Component {
         <a href={this.props.url}>
           <h3 className="poiTitle">{this.props.name}</h3>
         </a>
-        <button className="poiGoingButton">{this.props.going}</button>
+        <GoingButton loggedIn={this.props.loggedIn} going={this.props.going} />
         <div className="clearfix" />
         <hr />
         <img className="poiImg" src={this.props.imageUrl} alt={this.props.name} />
