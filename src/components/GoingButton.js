@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 
 class GoingButton extends React.Component {
@@ -16,4 +12,10 @@ class GoingButton extends React.Component {
     );
   }
 }
+
+GoingButton.propTypes = {
+  loggedIn: React.PropTypes.bool.isRequired,
+  going: React.PropTypes.number.isRequired,
+};
+
 export default GoingButton;

@@ -1,8 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
-
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -42,7 +37,9 @@ class Home extends React.Component {
     }
   }
   render() {
-    const poiList = this.props.pois.map(p => (<POI loggedIn={this.props.loggedIn} name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />));
+    const poiList = this.props.pois.map(p => (
+      <POI loggedIn={this.props.loggedIn} name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />
+    ));
     return (
       <div>
         <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
@@ -52,4 +49,10 @@ class Home extends React.Component {
     );
   }
 }
+Home.propTypes = {
+  loggedIn: React.PropTypes.bool.isRequired,
+  searchTerm: React.PropTypes.string.isRequired,
+  pois: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  dispatch: React.PropTypes.func.isRequired,
+};
 export default Home;

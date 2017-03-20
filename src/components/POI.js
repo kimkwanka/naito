@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import GoingButton from './GoingButton';
 
@@ -22,4 +18,14 @@ class POI extends React.Component {
     );
   }
 }
+
+POI.propTypes = {
+  loggedIn: React.PropTypes.bool.isRequired,
+  name: React.PropTypes.string.isRequired,
+  going: React.PropTypes.number.isRequired,
+  url: React.PropTypes.string.isRequired,
+  imageUrl: React.PropTypes.string.isRequired,
+  snippetText: React.PropTypes.string.isRequired,
+};
+
 export default POI;

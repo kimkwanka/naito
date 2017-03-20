@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 import Layout from '../components/Layout';

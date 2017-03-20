@@ -1,7 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/prefer-stateless-function */
-/* eslint-disable react/prop-types */
-
 import React from 'react';
 import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -27,6 +23,7 @@ class Layout extends React.Component {
 }
 Layout.propTypes = {
   children: React.PropTypes.node,
+  loggedIn: React.PropTypes.bool.isRequired,
 };
 Layout.defaultProps = () => ({ children: null });
 
