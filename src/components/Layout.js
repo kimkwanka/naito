@@ -3,9 +3,6 @@ import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
 import Header from './Header';
 
-@connect(store => ({
-  loggedIn: store.user.loggedIn,
-}))
 class Layout extends React.Component {
   render() {
     return (
@@ -27,4 +24,6 @@ Layout.propTypes = {
 };
 Layout.defaultProps = () => ({ children: null });
 
-export default Layout;
+export default connect(store => ({
+  loggedIn: store.user.loggedIn,
+}))(Layout);

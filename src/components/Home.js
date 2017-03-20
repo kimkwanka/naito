@@ -6,11 +6,6 @@ import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
 import { setPOIS } from '../actions/poisActions';
 
-@connect(store => ({
-  searchTerm: store.user.searchTerm,
-  loggedIn: store.user.loggedIn,
-  pois: store.POIs,
-}))
 class Home extends React.Component {
   componentDidMount() {
     // When we get to this page, try to search the API.
@@ -55,4 +50,9 @@ Home.propTypes = {
   pois: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
-export default Home;
+
+export default connect(store => ({
+  searchTerm: store.user.searchTerm,
+  loggedIn: store.user.loggedIn,
+  pois: store.POIs,
+}))(Home);
