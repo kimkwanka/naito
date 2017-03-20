@@ -12,7 +12,7 @@ class POI extends React.Component {
         <div className="clearfix" />
         <hr />
         <img className="poiImg" src={this.props.imageUrl} alt={this.props.name} />
-        <p className="poiSnippet">&quot;{this.props.snippetText}&quot;</p>
+        <p className="poiSnippet">{this.props.snippetText}</p>
         <div className="clearfix" />
       </div>
     );
@@ -25,7 +25,10 @@ POI.propTypes = {
   going: React.PropTypes.number.isRequired,
   url: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string.isRequired,
-  snippetText: React.PropTypes.string.isRequired,
+  snippetText: React.PropTypes.string,
+};
+POI.defaultProps = {
+  snippetText: '',
 };
 
 export default POI;
