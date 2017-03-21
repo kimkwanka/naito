@@ -18,6 +18,9 @@ class Home extends React.Component {
       this.searchAPI();
     }
   }
+  handleGoingClick = (str) => {
+    console.log('CLUCK FROM MOMMY', str);
+  }
   handleChange = (e) => {
     this.props.dispatch(setSearchTerm(e.target.value));
   }
@@ -33,7 +36,7 @@ class Home extends React.Component {
   }
   render() {
     const poiList = this.props.pois.map(p => (
-      <POI loggedIn={this.props.loggedIn} name={p.name} going={3} url={p.url} imageUrl={p.image_url} snippetText={p.snippet_text} address={p.location.display_address} />
+      <POI id={p.id} loggedIn={this.props.loggedIn} handleGoingClick={this.handleGoingClick} name={p.name} going={p.going} url={p.url} imageUrl={p.imageUrl} snippetText={p.snippetText} address={p.address} />
     ));
     return (
       <div>
