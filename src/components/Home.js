@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SearchButton from './SearchButton';
 import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
-import { setPOIS } from '../actions/poisActions';
+import { setPOIS, toggleGoing } from '../actions/poisActions';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -18,8 +18,8 @@ class Home extends React.Component {
       this.searchAPI();
     }
   }
-  handleGoingClick = (str) => {
-    console.log('CLUCK FROM MOMMY', str);
+  handleGoingClick = (id) => {
+    this.props.dispatch(toggleGoing(id, this.props.userName));
   }
   handleChange = (e) => {
     this.props.dispatch(setSearchTerm(e.target.value));
@@ -50,12 +50,14 @@ class Home extends React.Component {
 Home.propTypes = {
   loggedIn: React.PropTypes.bool.isRequired,
   searchTerm: React.PropTypes.string.isRequired,
+  userName: React.PropTypes.string.isRequired,
   pois: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 
 export default connect(store => ({
   searchTerm: store.user.searchTerm,
+  userName: store.user.name,
   loggedIn: store.user.loggedIn,
   pois: store.POIs,
 }))(Home);

@@ -28,7 +28,7 @@ POI.propTypes = {
   url: React.PropTypes.string.isRequired,
   imageUrl: React.PropTypes.string.isRequired,
   snippetText: React.PropTypes.string,
-  id: React.PropTypes.string,
+  id: React.PropTypes.string.isRequired,
   handleGoingClick: React.PropTypes.func.isRequired,
 };
 POI.defaultProps = {

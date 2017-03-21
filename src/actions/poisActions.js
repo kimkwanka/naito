@@ -4,9 +4,10 @@ export function setPOIS(pois) {
     pois,
   };
 }
-export function toggleGoing(poiName) {
+export function toggleGoing(poiId, userName) {
   return {
-    type: 'SET_POIS',
-    poiName,
+    type: 'TOGGLE_GOING',
+    poiId,
+    userName,
   };
 }
