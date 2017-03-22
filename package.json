@@ -18,6 +18,8 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.0",
     "express-session": "^1.15.1",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.1",
     "normalize.css": "^5.0.0",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.10",

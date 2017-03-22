@@ -19,7 +19,16 @@ class Home extends React.Component {
     }
   }
   handleGoingClick = (id) => {
-    this.props.dispatch(toggleGoing(id, this.props.userName));
+    console.log('action:', toggleGoing(id, this.props.userName));
+    axios.post(`/api/${this.props.searchTerm}/${id}`, toggleGoing(id, this.props.userName)).then((res) => {
+      console.log('RESPONSE:', res);
+      // this.props.dispatch(setPOIS(res.data.businesses));
+      this.props.dispatch(toggleGoing(id, this.props.userName));
+    }).catch((err) => {
+        console.log(err);
+    });
+    
+
   }
   handleChange = (e) => {
     this.props.dispatch(setSearchTerm(e.target.value));

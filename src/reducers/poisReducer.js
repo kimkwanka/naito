@@ -5,6 +5,7 @@ const POI = (state = {
   imgUrl: '',
   going: [],
   address: [],
+  id: '',
 }, action) => {
   switch (action.type) {
     case 'SET_POIS': {
@@ -29,7 +30,6 @@ const POI = (state = {
       } else {
         going = going.concat(action.userName);
       }
-      console.log(going);
       return Object.assign({}, state, { going });
     }
     default:
