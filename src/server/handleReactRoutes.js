@@ -1,12 +1,11 @@
 /* eslint-disable consistent-return */
-
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import getRoutes from '../shared/routes';
 import { hydrateStore } from '../shared/store';
-import POI from './db';
+// import POI from './db';
 
 const css = (process.env.NODE_ENV !== 'production') ? '' : 'link rel="stylesheet" href="/style.css"';
 const webRoot = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8081' : '';
