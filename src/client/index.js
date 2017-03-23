@@ -4,6 +4,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
+import * as io from 'socket.io-client';
+var socket = io();
+socket.on('connect', function(){
+  console.log('connect');
+  
+});
 
 import css from '../stylus/style.styl';
 
