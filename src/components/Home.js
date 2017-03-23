@@ -1,10 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import SearchButton from './SearchButton';
 import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
-import { setPOIS, toggleGoing } from '../actions/poisActions';
+import { toggleGoing } from '../actions/poisActions';
 import socket from '../client/socket';
 
 class Home extends React.Component {
@@ -22,27 +21,18 @@ class Home extends React.Component {
   handleGoingClick = (id) => {
     if (typeof window !== 'undefined') {
       socket.emit('ACTION_START', toggleGoing(id, this.props.userName));
-      console.log('Fire action:', toggleGoing(id, this.props.userName));      
-    }    
-    /*axios.post(`/api/${this.props.searchTerm}/${id}`, toggleGoing(id, this.props.userName)).then((res) => {
-      console.log('RESPONSE:', res);
-      // this.props.dispatch(setPOIS(res.data.businesses));
-      this.props.dispatch(toggleGoing(id, this.props.userName));
-    }).catch((err) => {
-      console.log(err);
-    });*/
+      console.log('ACTION_START:', toggleGoing(id, this.props.userName));
+    }
   }
   handleChange = (e) => {
     this.props.dispatch(setSearchTerm(e.target.value));
   }
   searchAPI = () => {
     if (this.props.searchTerm !== '') {
-      axios.get(`/api/${this.props.searchTerm}`).then((res) => {
-        console.log('RESPONSE:', res);
-        this.props.dispatch(setPOIS(res.data.businesses));
-      }).catch((err) => {
-        console.log(err);
-      });
+      if (typeof window !== 'undefined') {
+        socket.emit('SEARCH_API', this.props.searchTerm);
+        console.log('SEARCH_API:', this.props.searchTerm);
+      }
     }
   }
   render() {

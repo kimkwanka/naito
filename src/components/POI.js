@@ -26,13 +26,14 @@ POI.propTypes = {
   name: React.PropTypes.string.isRequired,
   going: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
   url: React.PropTypes.string.isRequired,
-  imageUrl: React.PropTypes.string.isRequired,
+  imageUrl: React.PropTypes.string,
   snippetText: React.PropTypes.string,
   id: React.PropTypes.string.isRequired,
   handleGoingClick: React.PropTypes.func.isRequired,
 };
 POI.defaultProps = {
   snippetText: '',
+  imageUrl: '',
 };
 
 export default POI;
