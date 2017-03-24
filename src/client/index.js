@@ -1,12 +1,9 @@
 /* global document */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 // Only needed if using preact with React Dev Tools Chrome extension
 import 'preact/devtools';
-
 import App from './App';
-
 import '../stylus/style.styl';
 
 

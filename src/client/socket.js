@@ -6,5 +6,4 @@ if (typeof window !== 'undefined') {
   socket = io();
 }
 
-
 export default socket;
