@@ -6,7 +6,6 @@ import 'preact/devtools';
 import App from './App';
 import '../stylus/style.styl';
 
-
 const render = (Component) => {
   ReactDOM.render(
     <Component />
