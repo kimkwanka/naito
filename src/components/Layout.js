@@ -1,5 +1,4 @@
 import React from 'react';
-import { IndexLink, Link } from 'react-router';
 import { connect } from 'react-redux';
 import Header from './Header';
 
@@ -9,9 +8,6 @@ class Layout extends React.Component {
       <div>
         <Header loggedIn={this.props.loggedIn} />
         <main className="container">
-          <IndexLink to="/" activeClassName="active"><li className="navItem">Home</li></IndexLink>
-          <Link to="/dashboard" activeClassName="active"><li className="navItem">Dashboard</li></Link>
-          <Link to="/styleguide" activeClassName="active"><li className="navItem">Style Guide</li></Link>
           {this.props.children}
         </main>
       </div>

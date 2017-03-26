@@ -7,7 +7,7 @@ class POI extends React.Component {
 
     return (
       <div className="POI">
-        <a href={this.props.url}>
+        <a href={this.props.url} target="_blank" rel="noopener noreferrer">
           <h3 className="poiTitle">{this.props.name}</h3>
         </a>
         <GoingButton loggedIn={this.props.loggedIn} going={nGoing} id={this.props.id} handleGoingClick={this.props.handleGoingClick} />

@@ -1,11 +1,12 @@
 // $color-background = #fff
-// $color-initial = #f00
+// $color-initial = #000
 $color-primary = #F9627D
 // $color-text = rgba(0,0,0,0.74)
 // $color-secondary = #606c76
 // $color-tertiary = #f4f5f6
 // $color-quaternary = #d1d1d1
 // $color-quinary = #e1e1e1
+$color-accent = #66C49B
 
 @import '../../node_modules/jeet/'
 @import './sutairu'
@@ -22,7 +23,7 @@ header
 .loginButton
   float right
   margin-top 8px
-
+  border 1px solid alpha($color-background, 0.5)
 hr
   margin-top 0
   margin-bottom 10px
@@ -35,6 +36,41 @@ button
 .button
   transition all 0.5s ease-in-out
 
+.searchBar
+  width 100%  
+
+.searchBarOuter
+  overflow hidden
+  padding-right: .5em
+  margin-top 30px
+
+.searchButton
+  float right
+  background $color-accent
+  border 1px solid $color-accent
+
+$size= 30px
+.searchIcon
+	cursor pointer
+	display inline-block
+	background transparent
+	border-radius 50%
+	border ($size/6) solid white;
+	height $size
+	width $size
+	position relative
+	&:after
+			 content: ''
+			 position: absolute
+			 top: ($size/2) + ($size/4*1.414) - 4px
+			 left: ($size/2) + ($size/8*1.414) - 6px
+			 transform: rotate(45deg)
+			 height: ($size/6)
+			 width: ($size/2)
+			 background-color: white
+			 border-radius: 10px
+
+
 .POI
   transition all 0.5s ease-in-out
   center()
@@ -44,14 +80,13 @@ button
   margin-bottom 20px
   box-shadow: 1px 1px 1px rgba(0,0,0,0.14)
   &:hover
-    border 1px solid #F9627D
+    border 1px solid $color-primary
 
 .poiTitle
   margin-top 10px
   margin-bottom 10px
   padding-left 10px
   float left
-
 
 .poiGoingButton
   margin 0
@@ -60,6 +95,10 @@ button
   margin-top 10px
   font-size 120%
   float right
+
+.active
+  background $color-accent
+  border 1px solid $color-accent
 
 .poiImg
   border-radius 4px

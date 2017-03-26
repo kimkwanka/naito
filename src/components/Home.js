@@ -41,8 +41,10 @@ class Home extends React.Component {
     ));
     return (
       <div>
-        <input onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your city" value={this.props.searchTerm} />
         <SearchButton handleClick={this.searchAPI} searchTerm={this.props.searchTerm} />
+        <div className="searchBarOuter">
+          <input className="searchBar" onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your location" value={this.props.searchTerm} />
+        </div>
         {poiList}
       </div>
     );

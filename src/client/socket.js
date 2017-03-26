@@ -1,9 +1,5 @@
 import * as io from 'socket.io-client';
 
-let socket = null;
-
-if (typeof window !== 'undefined') {
-  socket = io();
-}
+const socket = (typeof window !== 'undefined') ? io() : null;
 
 export default socket;

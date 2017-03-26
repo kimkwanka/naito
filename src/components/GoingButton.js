@@ -2,8 +2,9 @@ import React from 'react';
 
 class GoingButton extends React.Component {
   render() {
-    const button = (!this.props.loggedIn) ? <a className="button poiGoingButton" href="/login">{this.props.going}</a>
-                : <button className="poiGoingButton" onClick={() => this.props.handleGoingClick(this.props.id)} >{this.props.going}</button>;
+    const activeClass = (this.props.going > 0) ? ' active' : '';
+    const button = (!this.props.loggedIn) ? <a className={`button poiGoingButton${activeClass}`} href="/login">{this.props.going}</a>
+                : <button className={`poiGoingButton${activeClass}`} onClick={() => this.props.handleGoingClick(this.props.id)} >{this.props.going}</button>;
     return (
       button
     );
