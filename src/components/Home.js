@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import SearchButton from './SearchButton';
 import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
-import { toggleGoing } from '../actions/poisActions';
+import { setGoing, setNotGoing } from '../actions/poisActions';
 import socket from '../client/socket';
 
 class Home extends React.Component {
@@ -18,10 +18,16 @@ class Home extends React.Component {
       this.searchAPI();
     }
   }
-  handleGoingClick = (id) => {
+  handleGoingClick = (id, goingArr) => {
     if (typeof window !== 'undefined') {
-      socket.emit('ACTION_START', toggleGoing(id, this.props.userName));
-      console.log('ACTION_START:', toggleGoing(id, this.props.userName));
+      let action = null;
+      if (goingArr.indexOf(this.props.userName) === -1) {
+        action = setGoing(id, this.props.userName);
+      } else {
+        action = setNotGoing(id, this.props.userName);
+      }
+      socket.emit('ACTION_START', action);
+      console.log('ACTION_START:', action);
     }
   }
   handleChange = (e) => {

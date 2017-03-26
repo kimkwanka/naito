@@ -1,4 +1,5 @@
 import yelpAPI from './yelpAPI';
+// import POI from './db';
 
 const socketIO = (socket) => {
   console.log('User connected');
@@ -16,14 +17,21 @@ const socketIO = (socket) => {
     console.log(searchTerm);
     yelpAPI.search({ term: 'bar', location: searchTerm })
     .then((data) => {
+      /* POI.find((err, pois) => {
+        if (err) console.error(err);
+        console.log('POIS:', pois);
+        return pois;
+      });*/
+      data.businesses.forEach((b) => {
+        console.log(b.id);
+      });
+
       socket.emit('SEARCH_SUCCESS', data);
     })
     .catch((err) => {
       console.error(err);
       socket.emit('SEARCH_ERROR', err);
     });
-    //socket.emit('ACTION_SUCCESS', action);
-    //socket.broadcast.emit('ACTION_OTHER_CLIENT', action);
   });
 };
 

@@ -23,7 +23,7 @@ socket.on('ACTION_OTHER_CLIENT', (action) => {
 });
 
 socket.on('SEARCH_SUCCESS', (results) => {
-  console.log('SEARCH_SUCCESS');
+  console.log('SEARCH_SUCCESS', results);
   store.dispatch(setPOIS(results.businesses));
 });
 

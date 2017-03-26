@@ -22,13 +22,19 @@ const POI = (state = {
 
       return { name, snippetText, url, imageUrl, going, address, id };
     }
-    case 'TOGGLE_GOING': {
+    case 'SET_GOING': {
       let going = state.going.slice(0);
+      const index = going.indexOf(action.userName);
+      if (index === -1) {
+        going = going.concat(action.userName);
+      }
+      return Object.assign({}, state, { going });
+    }
+    case 'SET_NOT_GOING': {
+      const going = state.going.slice(0);
       const index = going.indexOf(action.userName);
       if (index !== -1) {
         going.splice(index, 1);
-      } else {
-        going = going.concat(action.userName);
       }
       return Object.assign({}, state, { going });
     }
@@ -42,7 +48,15 @@ const POIs = (state = [], action) => {
     case 'SET_POIS': {
       return action.pois.map((e, i) => (POI({}, { type: action.type, poi: action.pois[i] })));
     }
-    case 'TOGGLE_GOING': {
+    case 'SET_GOING': {
+      return state.map((e) => {
+        if (e.id === action.poiId) {
+          return POI(e, action);
+        }
+        return e;
+      });
+    }
+    case 'SET_NOT_GOING': {
       return state.map((e) => {
         if (e.id === action.poiId) {
           return POI(e, action);
