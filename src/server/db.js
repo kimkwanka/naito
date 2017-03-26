@@ -10,12 +10,10 @@ db.once('open', () => { /* Connection was established */ });
 
 // Schema for a 'Point Of Interest'
 const poiSchema = mongoose.Schema({
-  poi: {
-    id: String,
-    going: [String],
-  },
+  id: String,
+  going: [String],
 });
 
-const POI = mongoose.model('POI', poiSchema);
+const POIs = mongoose.model('POIs', poiSchema);
 
-module.exports = POI;
+module.exports = POIs;

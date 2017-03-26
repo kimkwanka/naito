@@ -1,8 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import yelpAPI from './yelpAPI';
 import githubAuth from './githubAuth';
-import POI from './db';
 
 const app = express();
 

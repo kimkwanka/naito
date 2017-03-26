@@ -1,4 +1,4 @@
-const POI = (state = {
+export const POI = (state = {
   name: '',
   snippet: '',
   url: '',
@@ -43,7 +43,7 @@ const POI = (state = {
   }
 };
 
-const POIs = (state = [], action) => {
+export const POIs = (state = [], action) => {
   switch (action.type) {
     case 'SET_POIS': {
       return action.pois.map((e, i) => (POI({}, { type: action.type, poi: action.pois[i] })));
@@ -68,5 +68,3 @@ const POIs = (state = [], action) => {
       return state;
   }
 };
-
-export default POIs;
