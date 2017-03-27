@@ -29,7 +29,7 @@ const githubAuth = (app) => {
   app.get('/login', passport.authenticate('github', { scope: ['user:email'] }));
   app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), (req, res) => {
     console.log('Logged In.');
-    res.redirect('/');
+    res.redirect('/authsuccess');
   });
   app.get('/logout', (req, res) => {
     req.logout();

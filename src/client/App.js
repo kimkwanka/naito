@@ -9,21 +9,21 @@ import { setPOIS } from '../actions/poisActions';
 const store = getHydratedStore();
 
 socket.on('connect', () => {
-  console.log('connect');
+  // console.log('connect');
 });
 
 socket.on('ACTION_SUCCESS', (action) => {
-  console.log('Action successfull');
+  // console.log('Action successfull');
   store.dispatch(action);
 });
 
 socket.on('ACTION_OTHER_CLIENT', (action) => {
-  console.log('ACTION_OTHER_CLIENT');
+  // console.log('ACTION_OTHER_CLIENT');
   store.dispatch(action);
 });
 
 socket.on('SEARCH_SUCCESS', (results) => {
-  console.log('SEARCH_SUCCESS', results);
+  // console.log('SEARCH_SUCCESS', results);
   store.dispatch(setPOIS(results.businesses));
 });
 

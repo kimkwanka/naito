@@ -61,17 +61,12 @@ const socketIO = (socket) => {
         if (dbFindErr) {
           console.log(dbFindErr);
         }
-        // console.log('POIS:', pois);
-
         pois.forEach((p) => {
           poiIdArr.push(p.id);
           poiGoingArr.push(p.going);
         });
         data.businesses.forEach((b) => {
-          console.log(b.id);
-
           const index = poiIdArr.indexOf(b.id);
-
           if (index !== -1) {
             b.going = poiGoingArr[index];
             console.log('Found:', b.id, b.going);
@@ -79,7 +74,6 @@ const socketIO = (socket) => {
         });
         return socket.emit('SEARCH_SUCCESS', data);
       });
-
     })
     .catch((err) => {
       console.error(err);

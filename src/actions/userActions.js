@@ -4,3 +4,9 @@ export function setSearchTerm(searchTerm) {
     searchTerm,
   };
 }
+export function login(userName) {
+  return {
+    type: 'LOGIN',
+    userName,
+  };
+}

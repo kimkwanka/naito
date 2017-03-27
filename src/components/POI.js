@@ -10,7 +10,7 @@ class POI extends React.Component {
         <a href={this.props.url} target="_blank" rel="noopener noreferrer">
           <h3 className="poiTitle">{this.props.name}</h3>
         </a>
-        <GoingButton loggedIn={this.props.loggedIn} goingArr={this.props.going} going={nGoing} id={this.props.id} handleGoingClick={this.props.handleGoingClick} />
+        <GoingButton handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} goingArr={this.props.going} going={nGoing} id={this.props.id} handleGoingClick={this.props.handleGoingClick} />
         <div className="clearfix" />
         <hr />
         <img className="poiImg" src={this.props.imageUrl} alt={this.props.name} />
@@ -22,6 +22,7 @@ class POI extends React.Component {
 }
 
 POI.propTypes = {
+  handleLogin: React.PropTypes.func.isRequired,
   loggedIn: React.PropTypes.bool.isRequired,
   name: React.PropTypes.string.isRequired,
   going: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,

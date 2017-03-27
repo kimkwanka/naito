@@ -11,8 +11,7 @@ const webRoot = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8081
 
 export default (req, res, next) => {
   // req.user is != undefined when successfully logged in with Github (githubAuth.js)
-  const user = req.user ? { name: req.user.username, searchTerm: 'Berlin', loggedIn: true } : { name: '', searchTerm: '', loggedIn: false };
-
+  const user = req.user ? { name: req.user.username, searchTerm: '', loggedIn: true } : { name: '', searchTerm: '', loggedIn: false };
   const store = hydrateStore({ user });
 
   match({ routes: getRoutes(store), location: req.url }, (matchErr, redirect, props) => {

@@ -7,7 +7,7 @@ class Header extends React.Component {
       <header>
         <div className="container">
           <h1 className="headerLogo">naito</h1>
-          <LoginButton loggedIn={this.props.loggedIn} />
+          <LoginButton handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} />
         </div>
       </header>
     );
@@ -15,5 +15,6 @@ class Header extends React.Component {
 }
 Header.propTypes = {
   loggedIn: React.PropTypes.bool.isRequired,
+  handleLogin: React.PropTypes.func.isRequired,
 };
 export default Header;

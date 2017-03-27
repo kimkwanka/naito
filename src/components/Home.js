@@ -7,12 +7,6 @@ import { setGoing, setNotGoing } from '../actions/poisActions';
 import socket from '../client/socket';
 
 class Home extends React.Component {
-  componentDidMount() {
-    // When we get to this page, try to search the API.
-    // (since this.props.searchTerm will be != '' in cases where the user just logged in
-    // and got back from the authentication page)
-    this.searchAPI();
-  }
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.searchAPI();
@@ -27,7 +21,7 @@ class Home extends React.Component {
         action = setNotGoing(id, this.props.userName);
       }
       socket.emit('ACTION_START', action);
-      console.log('ACTION_START:', action);
+      // console.log('ACTION_START:', action);
     }
   }
   handleChange = (e) => {
@@ -37,13 +31,13 @@ class Home extends React.Component {
     if (this.props.searchTerm !== '') {
       if (typeof window !== 'undefined') {
         socket.emit('SEARCH_API', this.props.searchTerm);
-        console.log('SEARCH_API:', this.props.searchTerm);
+        // console.log('SEARCH_API:', this.props.searchTerm);
       }
     }
   }
   render() {
     const poiList = this.props.pois.map(p => (
-      <POI id={p.id} loggedIn={this.props.loggedIn} handleGoingClick={this.handleGoingClick} name={p.name} going={p.going} url={p.url} imageUrl={p.imageUrl} snippetText={p.snippetText} address={p.address} />
+      <POI id={p.id} loggedIn={this.props.loggedIn} handleLogin={this.props.handleLogin} handleGoingClick={this.handleGoingClick} name={p.name} going={p.going} url={p.url} imageUrl={p.imageUrl} snippetText={p.snippetText} address={p.address} />
     ));
     return (
       <div>
@@ -57,6 +51,7 @@ class Home extends React.Component {
   }
 }
 Home.propTypes = {
+  handleLogin: React.PropTypes.func.isRequired,
   loggedIn: React.PropTypes.bool.isRequired,
   searchTerm: React.PropTypes.string.isRequired,
   userName: React.PropTypes.string.isRequired,
