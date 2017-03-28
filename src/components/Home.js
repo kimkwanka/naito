@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import SearchButton from './SearchButton';
+import Hero from './Hero';
 import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
 import { setGoing, setNotGoing } from '../actions/poisActions';
@@ -41,10 +41,7 @@ class Home extends React.Component {
     ));
     return (
       <div>
-        <SearchButton handleClick={this.searchAPI} searchTerm={this.props.searchTerm} />
-        <div className="searchBarOuter">
-          <input className="searchBar" onChange={this.handleChange} onKeyPress={this.handleKeyPress} type="text" placeholder="Enter your location" value={this.props.searchTerm} />
-        </div>
+        <Hero searchTerm={this.props.searchTerm} searchAPI={this.searchAPI} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress} />
         {poiList}
       </div>
     );

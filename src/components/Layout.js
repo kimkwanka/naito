@@ -16,7 +16,7 @@ class Layout extends React.Component {
     return (
       <div>
         <Header handleLogin={this.handleLogin} loggedIn={this.props.loggedIn} />
-        <main className="container">
+        <main>
           {children}
         </main>
       </div>

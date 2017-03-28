@@ -6,7 +6,7 @@ class Header extends React.Component {
     return (
       <header>
         <div className="container">
-          <h1 className="headerLogo">naito</h1>
+          <a href="/"><h1 className="headerLogo">naito</h1></a>
           <LoginButton handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} />
         </div>
       </header>
