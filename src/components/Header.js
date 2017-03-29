@@ -5,8 +5,8 @@ class Header extends React.Component {
   render() {
     return (
       <header>
-        <div className="container">
-          <a href="/"><h1 className="headerLogo">naito</h1></a>
+        <div className="headerContainer">
+          <a href="/"><h1 className="headerLogo"><span>na</span><span>i</span><span>to</span></h1></a>
           <LoginButton handleLogin={this.props.handleLogin} loggedIn={this.props.loggedIn} />
         </div>
       </header>
