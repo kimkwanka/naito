@@ -15,6 +15,16 @@ class POI extends React.Component {
       POI.allPois.forEach(p => p.nextSiblings = undefined);
     }
   }
+  static hideAll() {
+    if (POI.allPois) {
+      POI.allPois.forEach(p => p.hide());
+    }
+  }
+  static showAll() {
+    if (POI.allPois) {
+      POI.allPois.forEach(p => p.show());
+    }
+  }
 
   constructor() {
     super();
@@ -58,7 +68,20 @@ class POI extends React.Component {
       this.forceUpdate();
     }
   }
-
+  hide() {
+    this.state = {
+      opened: false,
+      className: 'POI hidden',
+    };
+    this.forceUpdate();
+  }
+  show() {
+    this.state = {
+      opened: false,
+      className: 'POI',
+    };
+    this.forceUpdate();
+  }
   handleClick = (e) => {
     e.preventDefault();
     if (this.state.opened) {
@@ -68,27 +91,27 @@ class POI extends React.Component {
       this.open(e);
     }
   }
-
+  
   render() {
     const nGoing = this.props.going.length;
-    /* const imgUrl = this.props.imageUrl.replace('ms.jpg', 'l.jpg');
+    const imgUrl = this.props.imageUrl.replace('ms.jpg', 'l.jpg');
     const backgroundStyle = {
       backgroundImage: `url(${imgUrl})`,
       backgroundSize: 'cover',
     };
-    const backgroundStyle2 = {
-      backgroundImage: `url(${imgUrl})`,
-      backgroundSize: 'cover',
-      backgroundPosition: '0px -48px',
-    }; */
-    const goingText = nGoing ? `${this.props.going[0]}` : 'No one!';
+    const goingText = nGoing ? `${this.props.going.join(', ')}` : 'No one!';
     const snippetText = this.props.snippetText ? `"${this.props.snippetText}"` : this.props.snippetText;
 
     return (
       <div className={this.state.className} style={{ animation: `POIANIMATION 0.6s ${this.props.animationDelay / 40}s 1 backwards, POIANIMATION2 0.2s ${this.props.animationDelay / 40}s 1 backwards` }}>
         <div className="poiInfo">
           <p className="poiGoing"><span>Going: </span><span>{goingText}</span></p>
-          <p className="poiSnippet">{snippetText}</p>
+
+          <div className="poiIMG" style={backgroundStyle}>
+            <div className="poiIMGMargin" />
+            <p className="poiSnippet">{snippetText}</p>
+          </div>
+          <a className="poiLink" href={this.props.url} target="_blank" rel="noopener noreferrer">More Info &gt;&gt;</a>
         </div>
         <div className="poiBG">
           <h3 className="poiTitle" onClick={this.handleClick}>{this.props.name}</h3>

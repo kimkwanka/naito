@@ -1,16 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Hero from './Hero';
+import Search from './Search';
 import POI from './POI';
 import { setSearchTerm } from '../actions/userActions';
 import { setGoing, setNotGoing, setPOIS } from '../actions/poisActions';
 import socket from '../client/socket';
 
 class Home extends React.Component {
-  constructor() {
-    super();
-    this.heroStillInCenter = true;
-  }
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       this.searchAPI();
@@ -33,11 +29,11 @@ class Home extends React.Component {
   }
   searchAPI = () => {
     if (this.props.searchTerm !== '') {
-      Hero.flyUp();
+      Search.flyUp();
       POI.closeAll();
       POI.resetSiblings();
-      this.heroStillInCenter = false;
-      this.props.dispatch(setPOIS([]));
+      POI.hideAll();
+      setTimeout(() => (this.props.dispatch(setPOIS([]))), 300);
       if (typeof window !== 'undefined') {
         socket.emit('SEARCH_API', this.props.searchTerm);
         // console.log('SEARCH_API:', this.props.searchTerm);
@@ -45,27 +41,8 @@ class Home extends React.Component {
     }
   }
   render() {
-    const poiList = this.props.pois.map((p, i) => {
-      const animationDelay = i;
-      return <POI animationDelay={animationDelay} id={p.id} loggedIn={this.props.loggedIn} handleLogin={this.props.handleLogin} handleGoingClick={this.handleGoingClick} name={p.name} going={p.going} url={p.url} imageUrl={p.imageUrl} snippetText={p.snippetText} address={p.address} />;
-    });
-    const poiLists = [[], [], []];
-    poiList.forEach((p, i) => {
-      const index = i % 3;
-      poiLists[index].push(p);
-    });
-    const searchResultsClass = this.heroStillInCenter ? 'searchResultsOuter' : 'searchResultsOuter searchResultsVisible';
     return (
-      <div>
-        <Hero searchTerm={this.props.searchTerm} searchAPI={this.searchAPI} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress} />
-        <div className={searchResultsClass}>
-          <div className="searchResults" >
-            <div className="poiListColumn">{poiLists[0]}</div>
-            <div className="poiListColumn">{poiLists[1]}</div>
-            <div className="poiListColumn">{poiLists[2]}</div>
-          </div>
-        </div>
-      </div>
+      <Search loggedIn={this.props.loggedIn} handleGoingClick={this.handleGoingClick} handleLogin={this.props.handleLogin} pois={this.props.pois} searchTerm={this.props.searchTerm} searchAPI={this.searchAPI} handleChange={this.handleChange} handleKeyPress={this.handleKeyPress} />
     );
   }
 }

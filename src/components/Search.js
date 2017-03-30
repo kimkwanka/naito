@@ -1,17 +1,18 @@
 /* global window */
 import React from 'react';
 import SearchButton from './SearchButton';
+import POI from './POI';
 
-class Hero extends React.Component {
+class Search extends React.Component {
   static instance = null;
   static flyUp() {
-    if (Hero.instance) {
-      Hero.instance.flyUp();
+    if (Search.instance) {
+      Search.instance.flyUp();
     }
   }
   constructor() {
     super();
-    Hero.instance = this;
+    Search.instance = this;
     this.isInCenter = true;
     this.heroCenterClass = 'searchHeroCenter';
   }
@@ -23,6 +24,15 @@ class Hero extends React.Component {
     }
   }
   render() {
+    const poiList = this.props.pois.map((p, i) => {
+      const animationDelay = i;
+      return <POI animationDelay={animationDelay} id={p.id} loggedIn={this.props.loggedIn} handleLogin={this.props.handleLogin} handleGoingClick={this.props.handleGoingClick} name={p.name} going={p.going} url={p.url} imageUrl={p.imageUrl} snippetText={p.snippetText} address={p.address} />;
+    });
+    const poiLists = [[], [], []];
+    poiList.forEach((p, i) => {
+      const index = i % 3;
+      poiLists[index].push(p);
+    });
     return (
       <div className="searchHero">
         <div className={this.heroCenterClass}>
@@ -33,16 +43,25 @@ class Hero extends React.Component {
             <SearchButton handleClick={this.props.searchAPI} searchTerm={this.props.searchTerm} />
           </div>
         </div>
+        <div className="searchResults clearfix" >
+          <div className="poiListColumn">{poiLists[0]}</div>
+          <div className="poiListColumn">{poiLists[1]}</div>
+          <div className="poiListColumn">{poiLists[2]}</div>
+        </div>
       </div>
     );
   }
 }
 
-Hero.propTypes = {
+Search.propTypes = {
+  handleGoingClick: React.PropTypes.func.isRequired,
+  handleLogin: React.PropTypes.func.isRequired,
+  loggedIn: React.PropTypes.bool.isRequired,
+  pois: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   handleKeyPress: React.PropTypes.func.isRequired,
   handleChange: React.PropTypes.func.isRequired,
   searchAPI: React.PropTypes.func.isRequired,
   searchTerm: React.PropTypes.string.isRequired,
 };
 
-export default Hero;
+export default Search;

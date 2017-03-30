@@ -5,6 +5,7 @@ import getRoutes from '../shared/routes';
 import { getHydratedStore } from '../shared/store';
 import socket from '../client/socket';
 import { setPOIS } from '../actions/poisActions';
+import POI from '../components/POI';
 
 const store = getHydratedStore();
 
@@ -24,6 +25,8 @@ socket.on('ACTION_OTHER_CLIENT', (action) => {
 
 socket.on('SEARCH_SUCCESS', (results) => {
   // console.log('SEARCH_SUCCESS', results);
+  //store.dispatch(setPOIS([]));
+  //POI.showAll();
   store.dispatch(setPOIS(results.businesses));
 });
 
