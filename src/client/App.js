@@ -5,7 +5,6 @@ import getRoutes from '../shared/routes';
 import { getHydratedStore } from '../shared/store';
 import socket from '../client/socket';
 import { setPOIS } from '../actions/poisActions';
-import POI from '../components/POI';
 
 const store = getHydratedStore();
 

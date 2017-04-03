@@ -5,7 +5,7 @@ const GitHubStrategy = require('passport-github2').Strategy;
 
 const clientID = process.env.GITHUB_CLIENT_ID || '';
 const clientSecret = process.env.GITHUB_CLIENT_SECRET || '';
-const callbackURL = process.env.GITHUB_CALLBACK_URL || 'http://localhost:8080/auth/github/callback';
+const callbackURL = (process.env.NODE_ENV !== 'production') ? 'http://localhost:8080/auth/github/callback' : process.env.GITHUB_CALLBACK_URL;
 
 const githubAuth = (app) => {
   app.use(session({
