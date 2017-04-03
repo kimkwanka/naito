@@ -7,7 +7,11 @@ class AuthSuccess extends React.Component {
   componentDidMount() {
     window.opener.loginSuccess(this.props.userName);
     window.opener.loginSuccess = null;
-    //window.close();
+    // For some reason when closing the window too quickly,
+    // the background in the parent window vanishes...
+    setTimeout(() => {
+      window.close();
+    }, 500);
   }
 
   render() {
