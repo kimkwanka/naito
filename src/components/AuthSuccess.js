@@ -7,7 +7,7 @@ class AuthSuccess extends React.Component {
   componentDidMount() {
     window.opener.loginSuccess(this.props.userName);
     window.opener.loginSuccess = null;
-    window.close();
+    //window.close();
   }
 
   render() {
